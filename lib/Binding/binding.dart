@@ -6,6 +6,7 @@ import 'package:billjek/Module/Home/viewModel.dart';
 import 'package:billjek/Module/Login/viewModel.dart';
 import 'package:billjek/Module/OTP/viewModel.dart';
 import 'package:billjek/Module/Register/viewModel.dart';
+import 'package:billjek/Module/SplashScreen/viewModel.dart';
 import 'package:get/get.dart';
 
 class LoginBinding implements Bindings{
@@ -31,4 +32,14 @@ class HomeBinding implements Bindings{
   }
 
 }
+
+class SplashScreenBinding implements Bindings{
+  @override
+  void dependencies() {
+    Get.lazyPut(() => SplashScreenCOntroller(),fenix: false);
+  }
+
+}
+
+
 

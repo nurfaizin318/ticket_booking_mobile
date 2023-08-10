@@ -1,5 +1,6 @@
 import 'package:billjek/Binding/binding.dart';
 import 'package:billjek/Module/Login/view.dart';
+import 'package:billjek/Module/SplashScreen/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:alice/alice.dart';
@@ -42,10 +43,10 @@ class _MyAppState extends State<MyApp> {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
-      initialBinding: LoginBinding(),
+      initialRoute: '/',
+      initialBinding: SplashScreenBinding(),
       getPages: Routes.pages,
-      home: LoginPage(),
+      home: SplashScreen(),
     );
   }
 }

@@ -18,7 +18,6 @@ class LoginPage extends StatelessWidget {
       String username = _usernameController.text;
       String password = _passwordController.text;
 
-
       controller.moveToHomePage();
     }
 
@@ -29,29 +28,89 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              "BillJek",
-              style: TextStyle(fontSize: 40),
+            Container(
+                width: 100,
+                height: 100,
+                decoration: const BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: const Icon(
+                  Icons.motorcycle_rounded,
+                  size: 70,
+                )),
+            const SizedBox(height: 60),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10.0),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Colors.grey, blurRadius: 2.0, spreadRadius: 0.1)
+                  ]),
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: "Username",
+                    isDense: true,
+                    counterText: "",
+                    contentPadding: EdgeInsets.all(10.0),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none)),
+                textAlign: TextAlign.start,
+                maxLines: 1,
+                maxLength: 20,
+                // controller: _locationNameTextController,
+              ),
             ),
-            const SizedBox(height: 40),
-            TextFormField(
-              controller: _usernameController,
-              decoration: const InputDecoration(
-                labelText: 'Username',
+            const SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10.0),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Colors.grey, blurRadius: 2.0, spreadRadius: 0.1)
+                  ]),
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: "password",
+                    isDense: true,
+                    counterText: "",
+                    contentPadding: EdgeInsets.all(10.0),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none)),
+                textAlign: TextAlign.start,
+                maxLines: 1,
+                maxLength: 20,
+                // controller: _locationNameTextController,
               ),
             ),
             const SizedBox(height: 16),
-            TextFormField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Password',
+            InkWell(
+              onTap: _loginPressed,
+              child: Container(
+                width: 200.0,
+                height: 50.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.blueAccent, // Warna latar belakang tombol
+                ),
+                child: const Center(
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.white, // Warna teks tombol
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _loginPressed,
-              child: const Text('Login'),
             ),
             const SizedBox(height: 16),
             const Text("Belum punya akun?"),
@@ -62,7 +121,7 @@ class LoginPage extends StatelessWidget {
               onPressed: () {
                 controller.moveToRegister();
               },
-              child: const Text('daftar'),
+              child: const Text('Daftar'),
             ),
           ],
         ),
