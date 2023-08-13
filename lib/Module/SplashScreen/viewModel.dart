@@ -14,6 +14,6 @@ class SplashScreenController extends GetxController {
   }
 
   void moveToHomePage() {
-    Get.toNamed('/login');
+    Get.toNamed('/introduction');
   }
 }

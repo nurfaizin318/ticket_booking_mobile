@@ -22,6 +22,7 @@ class LoginPage extends StatelessWidget {
     }
 
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -31,10 +32,11 @@ class LoginPage extends StatelessWidget {
             Container(
                 width: 170,
                 height: 100,
-                decoration: const BoxDecoration(
-                    color: Colors.amber,
+                decoration: BoxDecoration(
+                    color: Colors.yellow[700],
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: const Icon(
+                  color: Colors.red,
                   Icons.motorcycle_rounded,
                   size: 70,
                 )),
@@ -51,9 +53,9 @@ class LoginPage extends StatelessWidget {
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Siap Mengantar Kemanapun",
+                "Siap mengantar anda kemanapun",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 13,
                 ),
               ),
             ),
@@ -71,7 +73,7 @@ class LoginPage extends StatelessWidget {
                         onPressed: () {}, icon: const Icon(Icons.person)),
                     // contentPadding: const EdgeInsets.all(5.0),
                     filled: true,
-                    fillColor: Colors.grey[200],
+                    fillColor: Colors.white,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                         borderSide: BorderSide.none)),
@@ -90,7 +92,7 @@ class LoginPage extends StatelessWidget {
                     isDense: true,
                     counterText: "",
                     filled: true,
-                    fillColor: Colors.grey[200],
+                    fillColor: Colors.white,
                     prefixIcon: IconButton(
                         onPressed: () {}, icon: const Icon(Icons.lock)),
                     suffixIcon: IconButton(

@@ -1,5 +1,6 @@
 import 'package:billjek/Module/Chat/ViewModel.dart';
 import 'package:billjek/Module/Home/viewModel.dart';
+import 'package:billjek/Module/IntroductionPage/viewModel.dart';
 import 'package:billjek/Module/Layout/viewModel.dart';
 import 'package:billjek/Module/Login/viewModel.dart';
 import 'package:billjek/Module/OTP/viewModel.dart';
@@ -54,5 +55,12 @@ class ChatBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => ChatController(), fenix: false);
+  }
+}
+
+class IntroductionBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => IntroductionController(), fenix: false);
   }
 }

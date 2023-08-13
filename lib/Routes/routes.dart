@@ -1,6 +1,7 @@
 import 'package:billjek/Binding/binding.dart';
 import 'package:billjek/Module/Chat/View.dart';
 import 'package:billjek/Module/Home/view.dart';
+import 'package:billjek/Module/IntroductionPage/view.dart';
 import 'package:billjek/Module/Layout/View.dart';
 import 'package:billjek/Module/Login/view.dart';
 import 'package:billjek/Module/Profile/View.dart';
@@ -26,5 +27,9 @@ class Routes {
         binding: ProfileBinding()),
     GetPage(
         name: "/chat", page: () => const ChatPage(), binding: ChatBinding()),
+    GetPage(
+        name: "/introduction",
+        page: () => const IntroductionPage(),
+        binding: IntroductionBinding()),
   ];
 }
