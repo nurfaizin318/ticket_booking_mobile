@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-                width: 100,
+                width: 170,
                 height: 100,
                 decoration: const BoxDecoration(
                     color: Colors.amber,
@@ -39,24 +39,41 @@ class LoginPage extends StatelessWidget {
                   size: 70,
                 )),
             const SizedBox(height: 60),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.grey, blurRadius: 2.0, spreadRadius: 0.1)
-                  ]),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "BillJek",
+                style: TextStyle(
+                  fontSize: 40,
+                ),
+              ),
+            ),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Siap Mengantar Kemanapun",
+                style: TextStyle(
+                  fontSize: 15,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            SizedBox(
+              height: 45,
               child: TextField(
                 decoration: InputDecoration(
                     hintText: "Username",
                     isDense: true,
                     counterText: "",
-                    contentPadding: EdgeInsets.all(10.0),
+                    prefixIcon: IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.person)),
+                    // contentPadding: const EdgeInsets.all(5.0),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(5.0),
                         borderSide: BorderSide.none)),
                 textAlign: TextAlign.start,
                 maxLines: 1,
@@ -65,24 +82,23 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.grey, blurRadius: 2.0, spreadRadius: 0.1)
-                  ]),
+            SizedBox(
+              height: 45,
               child: TextField(
                 decoration: InputDecoration(
                     hintText: "password",
                     isDense: true,
                     counterText: "",
-                    contentPadding: EdgeInsets.all(10.0),
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: Colors.grey[200],
+                    prefixIcon: IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.lock)),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.visibility_off),
+                      onPressed: () {},
+                    ),
                     border: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide.none)),
                 textAlign: TextAlign.start,
                 maxLines: 1,

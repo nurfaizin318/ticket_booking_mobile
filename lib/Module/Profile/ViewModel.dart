@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class LoginController extends GetxController {
+class ProfileController extends GetxController {
   void moveToRegister() {
     Get.toNamed('/register');
   }

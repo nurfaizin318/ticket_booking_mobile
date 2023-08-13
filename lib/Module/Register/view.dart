@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
-    RegisterPage({Key? key}) : super(key: key);
-
-
+  RegisterPage({Key? key}) : super(key: key);
 
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -29,29 +27,99 @@ class RegisterPage extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextFormField(
-              controller: _usernameController,
-              decoration: InputDecoration(
-                labelText: 'Username',
+            SizedBox(
+              height: 45,
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: "Username",
+                    isDense: true,
+                    counterText: "",
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                        borderSide: BorderSide.none)),
+                textAlign: TextAlign.start,
+                maxLines: 1,
+                maxLength: 20,
+                // controller: _locationNameTextController,
               ),
             ),
             SizedBox(height: 16),
-            TextFormField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                labelText: 'Email',
+            SizedBox(
+              height: 45,
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: "Password",
+                    isDense: true,
+                    counterText: "",
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                        borderSide: BorderSide.none)),
+                textAlign: TextAlign.start,
+                maxLines: 1,
+                maxLength: 20,
+                // controller: _locationNameTextController,
               ),
             ),
-            SizedBox(height: 16),
-            TextFormField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 45,
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: "Ulangi Password",
+                    isDense: true,
+                    counterText: "",
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                        borderSide: BorderSide.none)),
+                textAlign: TextAlign.start,
+                maxLines: 1,
+                maxLength: 20,
+                // controller: _locationNameTextController,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 45,
+              child: TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    hintText: "No hp",
+                    isDense: true,
+                    counterText: "",
+                    prefixIcon: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            '+62 :',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        )
+                      ],
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                        borderSide: BorderSide.none)),
+                textAlign: TextAlign.start,
+                maxLines: 1,
+                maxLength: 20,
+                // controller: _locationNameTextController,
               ),
             ),
             SizedBox(height: 16),
@@ -65,4 +133,3 @@ class RegisterPage extends StatelessWidget {
     );
   }
 }
-

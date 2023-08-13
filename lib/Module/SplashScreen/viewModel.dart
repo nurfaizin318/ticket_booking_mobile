@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'dart:async';
 
-class SplashScreenCOntroller extends GetxController {
+class SplashScreenController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit

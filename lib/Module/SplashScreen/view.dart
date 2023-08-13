@@ -9,23 +9,19 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
-
-    final controller = Get.find<SplashScreenCOntroller>();
+    final controller = Get.find<SplashScreenController>();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
-  
 
     return Scaffold(
       body: Container(
         color: Colors.amber,
         width: width,
         height: height,
-        child: Image.asset('assets/images/splash.jpeg',
-        width: width,
-        fit: BoxFit.fill,
+        child: Image.asset(
+          'assets/images/splash.jpeg',
+          width: width,
+          fit: BoxFit.fill,
         ),
       ),
     );
