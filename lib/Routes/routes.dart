@@ -22,9 +22,7 @@ class Routes {
     GetPage(
         name: "/layout", page: () => const Layout(), binding: LayoutBinding()),
     GetPage(
-        name: "/profile",
-        page: () => const ProfilePage(),
-        binding: ProfileBinding()),
+        name: "/profile", page: () => ProfilePage(), binding: ProfileBinding()),
     GetPage(
         name: "/chat", page: () => const ChatPage(), binding: ChatBinding()),
     GetPage(

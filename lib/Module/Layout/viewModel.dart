@@ -11,7 +11,7 @@ class LayoutController extends GetxController {
   final List<Widget> children = [
     HomePage(),
     const ChatPage(),
-    const ProfilePage(),
+    ProfilePage(),
   ];
 
   void onTabTapped(int index) {

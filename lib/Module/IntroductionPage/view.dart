@@ -13,7 +13,7 @@ class IntroductionPage extends StatelessWidget {
     final introKey = GlobalKey<IntroductionScreenState>();
 
     void _onIntroEnd(context) {
-      Get.toNamed("/layout");
+      Get.toNamed("/login");
     }
 
     Widget _buildFullscreenImage() {
