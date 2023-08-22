@@ -1,3 +1,4 @@
+import 'package:billjek/Module/History/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,7 @@ class LayoutController extends GetxController {
   final List<Widget> children = [
     HomePage(),
     const ChatPage(),
+    HistoryPage(),
     ProfilePage(),
   ];
 
@@ -20,5 +22,11 @@ class LayoutController extends GetxController {
 
   void goToChat() {
     Get.toNamed("/chat");
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
   }
 }

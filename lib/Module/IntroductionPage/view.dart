@@ -81,8 +81,8 @@ class IntroductionPage extends StatelessWidget {
           bodyWidget: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Kami akan menjaga", style: bodyStyle),
-              Text("keamanan dan kenyamanan anda", style: bodyStyle),
+              Text("Aman dan Nyaman", style: bodyStyle),
+              // Text("keamanan dan kenyamanan anda", style: bodyStyle),
             ],
           ),
           decoration: pageDecoration.copyWith(

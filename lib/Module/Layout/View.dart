@@ -3,6 +3,7 @@ import 'package:billjek/Module/Home/view.dart';
 import 'package:billjek/Module/Layout/viewModel.dart';
 import 'package:billjek/Module/Profile/View.dart';
 import 'package:billjek/Module/Register/view.dart';
+import 'package:billjek/Utils/Color/color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -61,27 +62,37 @@ class Layout extends StatelessWidget {
         //     ),
         //   ),
         // ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          onTap: controller.onTabTapped,
-          items: const [
-            BottomNavigationBarItem(
-              //I want to navigate to a new page Library();
-              icon: Icon(Icons.home_outlined),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              //I want to navigate to a new page Store();
-              icon: Icon(Icons.chat_bubble_outline),
-              label: 'chat',
-            ),
-            BottomNavigationBarItem(
-              //I want to navigate to a new page Profile();
-              icon: Icon(Icons.account_circle_outlined),
-              label: 'Profile',
-            ),
-          ],
+        bottomNavigationBar: Obx(
+          () => BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.white,
+            onTap: controller.onTabTapped,
+            currentIndex: controller.currentIndex.value,
+            selectedItemColor: blue500,
+            unselectedItemColor: Colors.grey,
+            items: const [
+              BottomNavigationBarItem(
+                //I want to navigate to a new page Library();
+                icon: Icon(Icons.home_outlined),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                //I want to navigate to a new page Store();
+                icon: Icon(Icons.chat_bubble_outline),
+                label: 'chat',
+              ),
+              BottomNavigationBarItem(
+                //I want to navigate to a new page Profile();
+                icon: Icon(Icons.list),
+                label: 'Aktivitas',
+              ),
+              BottomNavigationBarItem(
+                //I want to navigate to a new page Profile();
+                icon: Icon(Icons.account_circle_outlined),
+                label: 'Profile',
+              ),
+            ],
+          ),
         ),
         body: Obx(() => controller.children[controller.currentIndex.value]));
   }

@@ -222,12 +222,12 @@ class ProfilePage extends StatelessWidget {
   Positioned BubleYellow() {
     return Positioned(
       left: 50,
-      top: -180,
+      top: -200,
       child: Container(
-        width: 300,
-        height: 300,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(150)),
+        width: 400,
+        height: 400,
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(200)),
             color: Colors.yellow),
       ),
     );
@@ -236,12 +236,12 @@ class ProfilePage extends StatelessWidget {
   Positioned BubleBlue() {
     return Positioned(
       left: -70,
-      top: -60,
+      top: -100,
       child: Container(
-        width: 300,
-        height: 300,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(150)),
+        width: 500,
+        height: 500,
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(250)),
             color: Colors.blue),
       ),
     );

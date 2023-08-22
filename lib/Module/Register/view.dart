@@ -66,17 +66,17 @@ class RegisterPage extends StatelessWidget {
                       child: Container(
                         height: 300,
                         width: 300,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: Color(0xFF0D47A1),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(50))),
                       ))),
               Positioned(
                 top: 50,
-                // left: 10,
+                left: 10,
                 child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
+                  icon: const Icon(
+                    Icons.read_more,
                   ),
                   iconSize: 30,
                   color: Colors.white,
@@ -154,7 +154,7 @@ class RegisterPage extends StatelessWidget {
                             RegExp regex = RegExp(
                                 r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
                             if (value.toString().isEmpty) {
-                              return 'Please enter password';
+                              return 'wajib di isi';
                             } else {
                               if (!regex.hasMatch(value.toString())) {
                                 return 'Cth: Vignesh123! ';
