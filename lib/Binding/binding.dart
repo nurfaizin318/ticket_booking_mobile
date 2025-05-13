@@ -1,14 +1,12 @@
 import 'package:billjek/Module/Chat/ViewModel.dart';
-import 'package:billjek/Module/History/viewModel.dart';
 import 'package:billjek/Module/Home/viewModel.dart';
 import 'package:billjek/Module/IntroductionPage/viewModel.dart';
 import 'package:billjek/Module/Layout/viewModel.dart';
 import 'package:billjek/Module/Login/viewModel.dart';
 import 'package:billjek/Module/OTP/viewModel.dart';
-import 'package:billjek/Module/Order/view.dart';
-import 'package:billjek/Module/Order/viewModel.dart';
 import 'package:billjek/Module/Profile/ViewModel.dart';
 import 'package:billjek/Module/Register/viewModel.dart';
+import 'package:billjek/Module/Select%20city/viewModel.dart';
 import 'package:billjek/Module/SplashScreen/viewModel.dart';
 import 'package:get/get.dart';
 
@@ -26,12 +24,6 @@ class RegisterBinding implements Bindings {
   }
 }
 
-class HomeBinding implements Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => HomeController(), fenix: true);
-  }
-}
 
 class SplashScreenBinding implements Bindings {
   @override
@@ -45,8 +37,6 @@ class LayoutBinding implements Bindings {
   void dependencies() {
     Get.lazyPut(() => LayoutController(), fenix: true);
     Get.lazyPut(() => HomeController(), fenix: true);
-    Get.lazyPut(() => HistoryController(), fenix: true);
-    Get.lazyPut(() => OrderController(), fenix: true);
   }
 }
 
@@ -71,16 +61,10 @@ class IntroductionBinding implements Bindings {
   }
 }
 
-class HistoryBinding implements Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => HistoryController(), fenix: false);
-  }
-}
 
-class OrderBinding implements Bindings {
+class SelectCityBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => OrderPage(), fenix: false);
+    Get.lazyPut(() => SelectCityController(), fenix: false);
   }
 }

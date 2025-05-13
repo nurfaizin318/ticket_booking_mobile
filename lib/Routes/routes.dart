@@ -1,13 +1,11 @@
 import 'package:billjek/Binding/binding.dart';
 import 'package:billjek/Module/Chat/View.dart';
-import 'package:billjek/Module/History/view.dart';
-import 'package:billjek/Module/Home/view.dart';
 import 'package:billjek/Module/IntroductionPage/view.dart';
 import 'package:billjek/Module/Layout/View.dart';
 import 'package:billjek/Module/Login/view.dart';
-import 'package:billjek/Module/Order/view.dart';
 import 'package:billjek/Module/Profile/View.dart';
 import 'package:billjek/Module/Register/view.dart';
+import 'package:billjek/Module/Select%20city/view.dart';
 import 'package:billjek/Module/SplashScreen/view.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +18,6 @@ class Routes {
         name: "/register",
         page: () => RegisterPage(),
         binding: RegisterBinding()),
-    GetPage(name: "/home", page: () => HomePage(), binding: HomeBinding()),
     GetPage(
       name: "/layout",
       page: () => const Layout(),
@@ -35,7 +32,9 @@ class Routes {
         page: () => const IntroductionPage(),
         binding: IntroductionBinding()),
     GetPage(
-        name: "/history", page: () => HistoryPage(), binding: HistoryBinding()),
-    GetPage(name: "/order", page: () => OrderPage(), binding: OrderBinding()),
+        name: "/select-city",
+        page: () => const SelectCity(),
+        binding: SelectCityBinding()),
+
   ];
 }

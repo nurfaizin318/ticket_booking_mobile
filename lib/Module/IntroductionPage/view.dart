@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
-import '../Home/view.dart';
 
 class IntroductionPage extends StatelessWidget {
   const IntroductionPage({super.key});
@@ -12,11 +11,11 @@ class IntroductionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final introKey = GlobalKey<IntroductionScreenState>();
 
-    void _onIntroEnd(context) {
+    void onIntroEnd(context) {
       Get.toNamed("/login");
     }
 
-    Widget _buildFullscreenImage() {
+    Widget buildFullscreenImage() {
       return Image.asset(
         'assets/images/ride.jpg',
         fit: BoxFit.cover,
@@ -26,13 +25,13 @@ class IntroductionPage extends StatelessWidget {
       );
     }
 
-    Widget _buildImage(String assetName, [double width = 350]) {
+    Widget buildImage(String assetName, [double width = 350]) {
       return Image.asset('assets/images/$assetName', width: width);
     }
 
     const bodyStyle = TextStyle(fontSize: 19.0);
 
-    var pageDecoration = PageDecoration(
+    var pageDecoration = const PageDecoration(
       titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
       bodyTextStyle: bodyStyle,
       bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
@@ -48,11 +47,11 @@ class IntroductionPage extends StatelessWidget {
       // autoScrollDuration: 3000,
 
       // infiniteAutoScroll: true,
-      globalHeader: Align(
+      globalHeader: const Align(
         alignment: Alignment.topRight,
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 16, right: 16),
+            padding: EdgeInsets.only(top: 16, right: 16),
             // child: _buildImage('flutter.png', 100),
           ),
         ),
@@ -67,13 +66,13 @@ class IntroductionPage extends StatelessWidget {
         PageViewModel(
           title: "Selamat Datang",
           body: "BillJek siap mengantar anda sampai tujuan",
-          image: _buildImage('ride.jpg'),
+          image: buildImage('ride.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Promo Melimpah",
           body: "NIkmati promo melimpah dari Billjek",
-          image: _buildImage('ride.jpg'),
+          image: buildImage('ride.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
@@ -91,12 +90,12 @@ class IntroductionPage extends StatelessWidget {
             bodyAlignment: Alignment.bottomCenter,
             imageAlignment: Alignment.topCenter,
           ),
-          image: _buildImage('ride.jpg'),
+          image: buildImage('ride.jpg'),
           reverse: true,
         ),
       ],
-      onDone: () => _onIntroEnd(context),
-      onSkip: () => _onIntroEnd(context), // You can override onSkip callback
+      onDone: () => onIntroEnd(context),
+      onSkip: () => onIntroEnd(context), // You can override onSkip callback
       showSkipButton: true,
       skipOrBackFlex: 0,
       nextFlex: 0,

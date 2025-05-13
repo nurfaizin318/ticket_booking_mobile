@@ -1,538 +1,280 @@
 import 'package:billjek/Module/Home/viewModel.dart';
-import 'package:billjek/Utils/Color/color.dart';
 import 'package:billjek/Utils/Style/style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
-import '../../Component/topBar.dart';
-
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
+
+
     final controller = Get.find<HomeController>();
-    final TopBarCotroller = Get.put(TopBarwithOpacityController());
-
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
-    List gradientCard = [
-      const LinearGradient(
-          colors: [
-            red200,
-            red1000,
-          ],
-          begin: FractionalOffset(1.0, 0.0),
-          end: FractionalOffset(0.0, 0.9),
-          stops: [0.0, 1.0],
-          tileMode: TileMode.clamp),
-      const LinearGradient(
-          colors: [
-            blue700,
-            blue400,
-          ],
-          begin: FractionalOffset(0.2, 0.0),
-          end: FractionalOffset(1.0, 0.0),
-          stops: [0.0, 1.0],
-          tileMode: TileMode.clamp)
-    ];
 
     return Scaffold(
-      body: Stack(
-        children: [
-          NotificationListener<ScrollUpdateNotification>(
-            onNotification: (notification) {
-              if (notification is ScrollUpdateNotification &&
-                  notification.depth == 0) {
-                TopBarCotroller.onNotificationScroll(notification);
-              }
-              return true;
-            },
-            child: SingleChildScrollView(
-              child: Container(
-                color: Colors.blue[50],
-                child: Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              width: width,
-                              height: 130,
-                              color: yellow800,
-                              child: Stack(children: [
-                                Positioned(
-                                    left: -50,
-                                    child: Container(
-                                      height: 200,
-                                      width: 200,
-                                      decoration: RoundedFixBox.getDecoration(
-                                          radius: 100,
-                                          color: Colors.white.withOpacity(0.2)),
-                                    )),
-                                Positioned(
-                                    right: -20,
-                                    top: -20,
-                                    child: Container(
-                                      height: 100,
-                                      width: 100,
-                                      decoration: RoundedFixBox.getDecoration(
-                                          radius: 50,
-                                          color: Colors.white.withOpacity(0.1)),
-                                    ))
-                              ]),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(20),
-                              width: width,
-                              height: 200,
-                              color: grey50,
-                              child: Center(
-                                child: FutureBuilder(
-                                  builder: (ctx, snapshot) {
-                                    // Checking if future is resolved or not
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.done) {
-                                      // If we got an error
-                                      if (snapshot.hasError) {
-                                        return Center(
-                                          child: Text(
-                                            '${snapshot.error} occurred',
-                                            style: TextStyle(fontSize: 18),
-                                          ),
-                                        );
-
-                                        // if we got our data
-                                      } else if (snapshot.hasData) {
-                                        // Extracting data from snapshot object
-                                        final data = snapshot.data;
-
-                                        return ListView.builder(
-                                            // shrinkWrap: true,
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: controller.data.length,
-                                            itemBuilder: (context, index) {
-                                              return Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        Get.toNamed("/order");
-                                                      },
-                                                      child: Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(10),
-                                                        margin:
-                                                            EdgeInsets.all(5),
-                                                        height: 100,
-                                                        width: 100,
-                                                        decoration: RoundedFixGradient
-                                                            .getDecoration(
-                                                                gradient:
-                                                                    gradientCard[
-                                                                        index]),
-                                                        child:
-                                                            Column(children: [
-                                                          const Icon(
-                                                            Icons
-                                                                .drive_eta_rounded,
-                                                            size: 50,
-                                                            color: Colors.white,
-                                                          ),
-                                                          const SizedBox(
-                                                            height: 10,
-                                                          ),
-                                                          Text(
-                                                            controller.data[
-                                                                        index]
-                                                                    ["title"]
-                                                                as String,
-                                                            style: DynamicTextStyle
-                                                                .textBold(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        13),
-                                                          )
-                                                        ]),
-                                                      ),
-                                                    )
-                                                  ]);
-                                            });
-                                      }
-                                    }
-                                    // Displaying LoadingSpinner to indicate waiting state
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  },
-
-                                  // Future that needs to be resolved
-                                  // inorder to display something on the Canvas
-                                  future: controller.getData(),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Positioned(
-                          top: 70,
-                          child: SaldoContainer(width),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      width: width,
-                      padding: const EdgeInsets.only(
-                        left: 20,
-                        bottom: 20,
-                      ),
-                      child: CurentlyContainer(width),
-                    ),
-                    Container(
-                        // color: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Billjek banyak promo nih ",
-                          style: DynamicTextStyle.textBold(color: grey700),
-                        )),
-                    Container(
-                      padding:
-                          const EdgeInsets.only(left: 15, top: 20, bottom: 20),
-                      width: width,
-                      height: 270,
-                      // color: Colors.orange,
-                      child: FutureBuilder(
-                        builder: (ctx, snapshot) {
-                          // Checking if future is resolved or not
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            // If we got an error
-                            if (snapshot.hasError) {
-                              return Center(
-                                child: Text(
-                                  '${snapshot.error} occurred',
-                                  style: TextStyle(fontSize: 18),
-                                ),
-                              );
-
-                              // if we got our data
-                            } else if (snapshot.hasData) {
-                              // Extracting data from snapshot object
-                              final data = snapshot.data;
-
-                              return ListView.builder(
-                                  // shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: controller.promo.length,
-                                  itemBuilder: (context, index) {
-                                    return Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            // padding: EdgeInsets.all(10),
-                                            margin: EdgeInsets.all(5),
-                                            // height: 270,
-                                            width: width * 0.9,
-                                            decoration:
-                                                RoundedFixBox.getDecoration(
-                                                    color: Colors.white),
-                                            child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    width: double.infinity,
-                                                    height: 150,
-                                                    color: Colors.white,
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                                  .only(
-                                                              topLeft: Radius
-                                                                  .circular(5),
-                                                              topRight: Radius
-                                                                  .circular(5)),
-                                                      child: Image.network(
-                                                        controller.promo[index]
-                                                            ["image"] as String,
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.all(10),
-                                                    child: Text(
-                                                      controller.promo[index]
-                                                          ["title"] as String,
-                                                      style: DynamicTextStyle
-                                                          .textBold(
-                                                              color: grey500),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 10),
-                                                    child: Text(
-                                                      controller.promo[index]
-                                                              ["subtitle"]
-                                                          as String,
-                                                      style: const TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                  )
-                                                ]),
-                                          )
-                                        ]);
-                                  });
-                            }
-                          }
-
-                          // Displaying LoadingSpinner to indicate waiting state
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        },
-
-                        // Future that needs to be resolved
-                        // inorder to display something on the Canvas
-                        future: controller.getPromo(),
-                      ),
-                    ),
-                  ],
+      backgroundColor: Colors.white,
+       appBar: AppBar(
+        leadingWidth: 200,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child: Text("Nur Faizin",style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),)
+        ),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        // Untuk menghilangkan leading secara default, jika tidak diperlukan:
+        automaticallyImplyLeading: false,
+       
+        // Gunakan action untuk widget di sisi kanan (trailing)
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+              
+                const SizedBox(width: 16),
+                IconButton(
+                  onPressed: () {
+                    // Navigasi ke rchat atau aksi lainnya.
+                  },
+                  icon: const Icon(Icons.chat_outlined, color: Colors.black),
                 ),
-              ),
+                IconButton(
+                  onPressed: () {
+                    // Navigasi ke notifikasi atau aksi lainnya.
+                  },
+                  icon: const Icon(Icons.notifications_none_outlined, color: Colors.black),
+                ),
+              ],
             ),
           ),
-          TopBarWithOppacity()
         ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            AccountCard(height),
+
+            const SizedBox(height: 10),
+
+            WalletMenu(),
+
+            const SizedBox(height: 10),
+            // Bus Ticket Search Card (ADD THIS in your Column, before Recent Transactions)
+            Container(
+  
+              padding: const EdgeInsets.all(16),
+              decoration: RoundedFixBox.getDecoration(radius: 20, color: Color.fromRGBO(225, 225, 225, 0.1)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Cari Tiket Bus",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Keberangkatan
+                  _BusTicketField(
+                    icon: Icons.location_on_outlined,
+                    label: "Terminal Keberangkatan",
+                    value: "Solo (Tirtonadi)",
+                    onTap: (){controller.navigateToSelectCity();},
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Tujuan
+                  _BusTicketField(
+                    icon: Icons.flag_outlined,
+                    label: "Terminal Tujuan",
+                    value: "Jakarta (Pulogebang)",
+                    onTap: (){controller.navigateToSelectCity();},
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Kelas Bus
+                  _BusTicketField(
+                    icon: Icons.event_seat_outlined,
+                    label: "Kelas Bus",
+                    value: "Executive",
+                    onTap: (){print("test");},
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Tanggal
+                  _BusTicketField(
+                    icon: Icons.date_range_outlined,
+                    label: "Tanggal Keberangkatan",
+                    value: "20 Mei 2025",
+                    onTap: (){print("test");},
+                  ),
+
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                      child: const Text(
+                        "Cari Tiket",
+                        style: TextStyle(fontSize: 16,color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // Recent Transactions
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text("Recent Transactions",
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                Text("See All", style: TextStyle(color: Colors.blue)),
+              ],
+            ),
+            const SizedBox(height: 16),
+            ListTile(
+              // leading: Image.asset('assets/bca_logo.png', width: 40), // Replace with real image
+              title: const Text("OLIVIA GRACE BENNETT"),
+              subtitle: const Text("17 Dec 2024 - 13:21"),
+              trailing: const Text(
+                "-\$20.75",
+                style:
+                    TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Container CurentlyContainer(double width) {
+  Container WalletMenu() {
     return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: const BoxDecoration(
-          color: blue900,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), bottomLeft: Radius.circular(20))),
-      width: width * 0.9,
-      height: 180,
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Akhir - akhir ini : ",
-                style: DynamicTextStyle.textNormal(
-                    color: Colors.white, fontWeight: FontWeight.w500),
-              ),
-              Text(
-                "View All",
-                style: DynamicTextStyle.textNormal(
-                    color: Colors.white, fontWeight: FontWeight.w500),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            children: [
-              const Icon(
-                Icons.drive_eta_outlined,
-                size: 30,
-                color: Colors.white,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "BillCar",
-                    style: DynamicTextStyle.textBold(
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Tanah abang - Palmerah",
-                    style: DynamicTextStyle.textNormal(color: Colors.white),
-                  )
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              const Icon(
-                Icons.drive_eta_outlined,
-                size: 30,
-                color: Colors.white,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "BillCar",
-                    style: DynamicTextStyle.textBold(
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Tanah abang - Palmerah",
-                    style: DynamicTextStyle.textNormal(color: Colors.white),
-                  )
-                ],
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
-  Container SaldoContainer(double width) {
-    return Container(
-      padding: EdgeInsets.all(19),
-      width: width * 0.9,
-      height: 120,
       decoration: RoundedFixBox.getDecoration(
-        color: Colors.white,
+          radius: 20, color: Color.fromRGBO(225, 225, 225, 0.2)),
+      // color: Color.fromRGBO(225, 225, 225, 0.4),
+      padding: EdgeInsets.all(20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _ActionButton(icon: Icons.qr_code_scanner, label: "Scan"),
+          _ActionButton(
+              icon: Icons.account_balance_wallet_outlined, label: "Top Up"),
+          _ActionButton(icon: Icons.send_outlined, label: "Transfer"),
+          _ActionButton(icon: Icons.money_outlined, label: "widtrawal"),
+        ],
       ),
+    );
+  }
+
+  Container AccountCard(double height) {
+    return Container(
+      width: double.infinity,
+      height: height * 0.22,
+      decoration: BoxDecoration(
+        color: Colors.blue.shade700,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Main Account",
+              style: TextStyle(color: Colors.white, fontSize: 16)),
+          const SizedBox(height: 6),
+          const Text("9083 2124 9021",
+              style: TextStyle(color: Colors.white70, fontSize: 14)),
+          const Spacer(),
+          const Text("Rp 120.382",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold)),
+          const Spacer(),
+        ],
+      ),
+    );
+  }
+}
+
+class _ActionButton extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const _ActionButton({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white,
+          ),
+          padding: const EdgeInsets.all(12),
+          child: Icon(icon, color: Colors.blue, size: 26),
+        ),
+        const SizedBox(height: 6),
+        Text(label),
+      ],
+    );
+  }
+}
+
+class _BusTicketField extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+  final VoidCallback? onTap;
+
+  const _BusTicketField({
+    required this.icon,
+    required this.label,
+    required this.value,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
       child: Row(
         children: [
+          Icon(icon, color: Colors.blue),
+          const SizedBox(width: 12),
           Expanded(
-            flex: 2,
-            child: Container(
-              height: 100,
-              // color: Colors.red,
-              child: Container(
-                decoration:
-                    RoundedFixBox.getDecoration(radius: 10.0, color: blue50),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Saldo :",
-                      style: DynamicTextStyle.textBold(
-                          fontSize: 18, color: blue900),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Rp. 200.000.000",
-                      style: DynamicTextStyle.textBold(
-                          fontSize: 14, color: blue900),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              height: 100,
-              // color: Colors.green
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          // Get.toNamed("/profile");
-                        },
-                        splashColor: grey800,
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: RoundedFixBox.getDecoration(
-                              radius: 10, color: blue1000),
-                          child: const Center(
-                            child: Icon(
-                              Icons.arrow_circle_up_rounded,
-                              size: 35,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        "Top up",
-                        style: DynamicTextStyle.textNormal(
-                            color: blue800,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    children: [
-                      InkWell(
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration: RoundedFixBox.getDecoration(
-                              radius: 10, color: blue1000),
-                          child: const Center(
-                            child: Icon(
-                              Icons.arrow_circle_down_rounded,
-                              size: 35,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        "Tarik",
-                        style: DynamicTextStyle.textNormal(
-                            color: blue700,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15),
-                      )
-                    ],
-                  )
+                  Text(label,
+                      style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                  const SizedBox(height: 4),
+                  Text(value,
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w600)),
                 ],
               ),
             ),
@@ -542,3 +284,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+

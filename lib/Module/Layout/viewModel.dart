@@ -1,18 +1,18 @@
-import 'package:billjek/Module/History/view.dart';
+
+import 'package:billjek/Module/Home/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../Chat/View.dart';
-import '../Home/view.dart';
 import '../Profile/View.dart';
 
 class LayoutController extends GetxController {
   RxInt currentIndex = 0.obs;
 
   final List<Widget> children = [
-    HomePage(),
-    const ChatPage(),
-    HistoryPage(),
+    Home(),
+    ChatPage(),
+    ProfilePage(),
     ProfilePage(),
   ];
 

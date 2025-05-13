@@ -15,13 +15,12 @@ class SplashScreen extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        color: Colors.amber,
+        
+        color: Colors.lightBlue,
         width: width,
         height: height,
-        child: Image.asset(
-          'assets/images/splash.jpeg',
-          width: width,
-          fit: BoxFit.fill,
+        child: Center(
+          child: Text("Tiketku.com",style: TextStyle(fontSize: 40,color: Colors.white, fontWeight: FontWeight.bold)),
         ),
       ),
     );

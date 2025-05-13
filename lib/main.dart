@@ -12,7 +12,7 @@ void main() {
 
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -30,7 +30,6 @@ class _MyAppState extends State<MyApp> {
       _alice = Alice(
       showNotification: true,
       showInspectorOnShake: true,
-      darkTheme: false,
       maxCallsCount: 1000,
     );
 
@@ -46,7 +45,6 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       initialBinding: SplashScreenBinding(),
       getPages: Routes.pages,
-      home: SplashScreen(),
     );
   }
 }

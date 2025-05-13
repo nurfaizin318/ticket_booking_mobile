@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'dart:math' as math;
 import 'package:flutter/services.dart';
 
-import 'package:get/get_core/src/get_main.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({Key? key}) : super(key: key);
@@ -22,10 +21,6 @@ class RegisterPage extends StatelessWidget {
     String username = _usernameController.text;
     String email = _emailController.text;
     String password = _passwordController.text;
-
-    print('Username: $username');
-    print('Email: $email');
-    print('Password: $password');
   }
 
   @override
@@ -37,46 +32,26 @@ class RegisterPage extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       body: GestureDetector(
         onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
+          FocusScope.of(context).requestFocus(FocusNode());
         },
         child: SingleChildScrollView(
           child: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle.light,
             child: Stack(children: [
-              Container(
-                height: height,
+        
+      
+              Image.asset(
+                "assets/images/bus1.png",
+                fit: BoxFit.cover,
+                height: height * 0.40,
                 width: width,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Color(0xFFFDD835),
-                        Color(0xFFEF5350),
-                      ],
-                      begin: FractionalOffset(0.5, 0.0),
-                      end: FractionalOffset(1.0, 0.0),
-                      stops: [0.0, 1.0],
-                      tileMode: TileMode.clamp),
-                ),
               ),
-              Positioned(
-                  top: -20,
-                  left: -90,
-                  child: Transform.rotate(
-                      angle: 15 * math.pi / 70,
-                      child: Container(
-                        height: 300,
-                        width: 300,
-                        decoration: const BoxDecoration(
-                            color: Color(0xFF0D47A1),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
-                      ))),
-              Positioned(
+                          Positioned(
                 top: 50,
                 left: 10,
                 child: IconButton(
                   icon: const Icon(
-                    Icons.read_more,
+                    Icons.chevron_left,
                   ),
                   iconSize: 30,
                   color: Colors.white,
@@ -88,7 +63,7 @@ class RegisterPage extends StatelessWidget {
               ),
               Container(
                 height: height * 0.75,
-                margin: EdgeInsets.only(top: height * 0.25),
+                margin: EdgeInsets.only(top: height * 0.40),
                 padding: EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
                     color: Colors.grey[100],
@@ -130,7 +105,7 @@ class RegisterPage extends StatelessWidget {
                             }
                           },
                           decoration: InputDecoration(
-                              hintText: "Username",
+                              hintText: "email",
                               isDense: true,
                               counterText: "",
                               prefixIcon: IconButton(
@@ -200,7 +175,7 @@ class RegisterPage extends StatelessWidget {
                               }
                             },
                             decoration: InputDecoration(
-                                hintText: "ulangi password",
+                                hintText: "confirm password",
                                 isDense: true,
                                 counterText: "",
                                 filled: true,
@@ -281,7 +256,7 @@ class RegisterPage extends StatelessWidget {
                             ),
                             child: const Center(
                               child: Text(
-                                'Daftar',
+                                'Register',
                                 style: TextStyle(
                                   color: Colors.white, // Warna teks tombol
                                   fontSize: 18.0,

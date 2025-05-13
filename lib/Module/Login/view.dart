@@ -36,38 +36,16 @@ class LoginPage extends StatelessWidget {
           },
           child: SingleChildScrollView(
             child: Stack(children: [
-              Container(
+              Image.asset(
+                "assets/images/bus2.png",
+                fit: BoxFit.cover,
+                height: height * 0.40,
                 width: width,
-                height: height,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Color(0xFFFDD835),
-                        Color(0xFFEF5350),
-                      ],
-                      begin: FractionalOffset(0.2, 0.0),
-                      end: FractionalOffset(1.0, 0.0),
-                      stops: [0.0, 1.0],
-                      tileMode: TileMode.clamp),
-                ),
               ),
-              Positioned(
-                top: -20,
-                left: -90,
-                child: Transform.rotate(
-                  angle: 15 * math.pi / 70,
-                  child: Container(
-                    height: 300,
-                    width: 300,
-                    decoration: const BoxDecoration(
-                        color: Color(0xFF0D47A1),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
-              ),
+     
               Container(
-                height: height * 0.75,
-                margin: EdgeInsets.only(top: height * 0.25),
+                height: height * 0.50,
+                margin: EdgeInsets.only(top: height * 0.40),
                 padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
                     color: Colors.grey[100],

@@ -1,10 +1,5 @@
-import 'package:billjek/Module/Chat/View.dart';
-import 'package:billjek/Module/Home/view.dart';
 import 'package:billjek/Module/Layout/viewModel.dart';
-import 'package:billjek/Module/Profile/View.dart';
-import 'package:billjek/Module/Register/view.dart';
 import 'package:billjek/Utils/Color/color.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

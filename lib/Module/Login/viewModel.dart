@@ -4,7 +4,7 @@ class LoginController extends GetxController {
   RxBool obsecureTestStatus = true.obs;
 
   void moveToRegister() {
-    Get.toNamed('/register');
+    Get.toNamed('/layout');
   }
 
   void moveToHomePage() {
