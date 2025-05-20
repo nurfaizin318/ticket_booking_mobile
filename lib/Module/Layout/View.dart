@@ -1,8 +1,34 @@
+import 'package:awesome_bottom_bar/widgets/inspired/inspired.dart';
 import 'package:billjek/Module/Layout/viewModel.dart';
 import 'package:billjek/Utils/Color/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
+
+
+
+const List<TabItem> items = [
+  TabItem(
+    icon: Icons.home,
+    title: 'Home',
+  ),
+  TabItem(
+    icon: Icons.search_sharp,
+    title: 'Shop',
+  ),
+  TabItem(
+    icon: Icons.favorite_border,
+    title: 'Wishlist',
+  ),
+  TabItem(
+    icon: Icons.shopping_cart_outlined,
+    title: 'Cart',
+  ),
+  TabItem(
+    icon: Icons.account_box,
+    title: 'profile',
+  ),
+];
 
 class Layout extends StatelessWidget {
   const Layout({super.key});
@@ -10,40 +36,20 @@ class Layout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<LayoutController>();
-    GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
 
     return Scaffold(
         bottomNavigationBar: Obx(
-          () => CurvedNavigationBar(
-            color: Colors.white,
-            buttonBackgroundColor: Colors.blueAccent,
-            backgroundColor: Colors.white,
-            animationCurve: Curves.linear,
-            animationDuration: Duration(milliseconds: 200),
-            key: bottomNavigationKey,
-            items: <Widget>[
-              Icon(
-                Icons.home_outlined,
-                size: 30,
-                color: controller.currentIndex.value == 0
-                    ? Colors.white
-                    : Colors.black,
+          () =>      BottomBarCreative(
+              items: items,
+              backgroundColor: Colors.green.withOpacity(0.21),
+              color: Colors.white,
+              colorSelected: Colors.blue,
+              indexSelected: controller.currentIndex.value,
+              highlightStyle:const HighlightStyle(
+                isHexagon: true,
               ),
-              Icon(Icons.chat_outlined,
-                  size: 30,
-                  color: controller.currentIndex.value == 1
-                      ? Colors.white
-                      : Colors.black),
-              Icon(Icons.account_box_outlined,
-                  size: 30,
-                  color: controller.currentIndex.value == 2
-                      ? Colors.white
-                      : Colors.black),
-            ],
-            onTap: (index) {
-              controller.onTabTapped(index);
-            },
-          ),
+              onTap: (int index) => controller.onTabTapped(index)
+            ),
         ),
         body: Obx(() => controller.children[controller.currentIndex.value]));
   }
