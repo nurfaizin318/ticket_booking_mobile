@@ -65,19 +65,19 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  alice: 9e263163fffc6efb6008627d1931b3b05e2c9c9c
+  alice: 16ca3b89f5e8395fd585e3a2920b8f4e250e3bf4
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_keyboard_visibility: 4625131e43015dbbe759d9b20daaf77e0e3f6619
-  flutter_local_notifications: ad39620c743ea4c15127860f4b5641649a988100
-  location: 155caecf9da4f280ab5fe4a55f94ceccfab838f8
-  open_filex: 432f3cd11432da3e39f47fcc0df2b1603854eff1
-  package_info_plus: 566e1b7a2f3900e4b0020914ad3fc051dcc95596
-  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
-  permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
-  sensors_plus: 2ba4ccef05473d428576bd640f0409c833a9bdea
-  share_plus: de6030e33b4e106470e09322d87cf2a4258d2d1d
-  url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
+  flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
+  flutter_local_notifications: 4cde75091f6327eb8517fa068a0a5950212d2086
+  location: d5cf8598915965547c3f36761ae9cc4f4e87d22e
+  open_filex: 6e26e659846ec990262224a12ef1c528bb4edbe4
+  package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
+  sensors_plus: 4ee32bc7d61a055f27f88d3215ad6b6fb96a2b8e
+  share_plus: c3fef564749587fc939ef86ffb283ceac0baf9f5
+  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.15.2

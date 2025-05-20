@@ -2,6 +2,7 @@ import 'package:billjek/Module/Layout/viewModel.dart';
 import 'package:billjek/Utils/Color/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class Layout extends StatelessWidget {
   const Layout({super.key});
@@ -9,84 +10,39 @@ class Layout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<LayoutController>();
+    GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
 
     return Scaffold(
-        // appBar: AppBar(
-        //   actions: <Widget>[
-        //     IconButton(
-        //       icon: const Icon(
-        //         Icons.chat_bubble,
-        //         color: Colors.white,
-        //       ),
-        //       onPressed: () {
-        //         // do something
-        //         controller.goToChat();
-        //       },
-        //     ),
-        //     IconButton(
-        //       icon: const Icon(
-        //         Icons.notifications,
-        //         color: Colors.white,
-        //       ),
-        //       onPressed: () {
-        //         // do something
-        //       },
-        //     )
-        //   ],
-        //   title: Align(
-        //     alignment: Alignment.centerLeft,
-        //     child: SizedBox(
-        //       height: 30,
-        //       child: TextField(
-        //         textAlignVertical: TextAlignVertical.bottom,
-        //         decoration: InputDecoration(
-        //             hintText: "Cari",
-        //             isDense: true,
-        //             counterText: "",
-        //             filled: true,
-        //             prefixIcon: const Icon(Icons.search),
-        //             fillColor: Colors.grey[200],
-        //             border: OutlineInputBorder(
-        //                 borderRadius: BorderRadius.circular(25.0),
-        //                 borderSide: BorderSide.none)),
-        //         textAlign: TextAlign.start,
-        //         maxLines: 1,
-        //         maxLength: 20,
-        //         // controller: _locationNameTextController,
-        //       ),
-        //     ),
-        //   ),
-        // ),
         bottomNavigationBar: Obx(
-          () => BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
+          () => CurvedNavigationBar(
+            color: Colors.white,
+            buttonBackgroundColor: Colors.blueAccent,
             backgroundColor: Colors.white,
-            onTap: controller.onTabTapped,
-            currentIndex: controller.currentIndex.value,
-            selectedItemColor: blue500,
-            unselectedItemColor: Colors.grey,
-            items: const [
-              BottomNavigationBarItem(
-                //I want to navigate to a new page Library();
-                icon: Icon(Icons.home_outlined),
-                label: 'Home',
+            animationCurve: Curves.linear,
+            animationDuration: Duration(milliseconds: 200),
+            key: bottomNavigationKey,
+            items: <Widget>[
+              Icon(
+                Icons.home_outlined,
+                size: 30,
+                color: controller.currentIndex.value == 0
+                    ? Colors.white
+                    : Colors.black,
               ),
-              BottomNavigationBarItem(
-                //I want to navigate to a new page Store();
-                icon: Icon(Icons.chat_bubble_outline),
-                label: 'chat',
-              ),
-              BottomNavigationBarItem(
-                //I want to navigate to a new page Profile();
-                icon: Icon(Icons.list),
-                label: 'Aktivitas',
-              ),
-              BottomNavigationBarItem(
-                //I want to navigate to a new page Profile();
-                icon: Icon(Icons.account_circle_outlined),
-                label: 'Profile',
-              ),
+              Icon(Icons.chat_outlined,
+                  size: 30,
+                  color: controller.currentIndex.value == 1
+                      ? Colors.white
+                      : Colors.black),
+              Icon(Icons.account_box_outlined,
+                  size: 30,
+                  color: controller.currentIndex.value == 2
+                      ? Colors.white
+                      : Colors.black),
             ],
+            onTap: (index) {
+              controller.onTabTapped(index);
+            },
           ),
         ),
         body: Obx(() => controller.children[controller.currentIndex.value]));

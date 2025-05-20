@@ -35,6 +35,7 @@ dependencies:
   alice: ^0.4.1
   introduction_screen: ^3.1.11
   colorful_safe_area: ^1.0.0
+  curved_navigation_bar: ^1.0.6
 
 
   # The following adds the Cupertino Icons font to your application.
