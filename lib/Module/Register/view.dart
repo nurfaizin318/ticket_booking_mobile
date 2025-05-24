@@ -1,9 +1,9 @@
-import 'package:billjek/Module/Register/viewModel.dart';
+import 'package:tiketku/Module/Register/viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 import 'package:flutter/services.dart';
-
+import 'package:tiketku/Theme/appColors.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({Key? key}) : super(key: key);
@@ -12,15 +12,16 @@ class RegisterPage extends StatelessWidget {
 
   final controller = Get.find<RegisterController>();
 
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+    final TextEditingController _nameController = TextEditingController();
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+    final TextEditingController _phoneController = TextEditingController();
+
+    String? _selectedRole;
 
   void _registerPressed() {
-    // Anda dapat menambahkan logika untuk mengirim data registrasi ke server atau melakukan aksi selanjutnya di sini
-    String username = _usernameController.text;
-    String email = _emailController.text;
-    String password = _passwordController.text;
+
+
   }
 
   @override
@@ -29,236 +30,229 @@ class RegisterPage extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
         },
         child: SingleChildScrollView(
-          child: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light,
-            child: Stack(children: [
-        
-      
-              Image.asset(
-                "assets/images/bus1.png",
-                fit: BoxFit.cover,
-                height: height * 0.40,
-                width: width,
-              ),
-                          Positioned(
-                top: 50,
-                left: 10,
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.chevron_left,
+          child: Stack(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 80),
+                    height: height * 0.50,
+                    width: width,
+                    decoration: const BoxDecoration(
+                      color: AppColors.primary,
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/Star.png"),
+                          fit: BoxFit.cover),
+                    ),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/logo_product_2.png",
+                          fit: BoxFit.cover,
+                          height: 10,
+                          width: 100,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Create a new Account",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: AppColors.background,
+                            fontSize: 36,
+                            height: 1.2,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Fill the form to register",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: AppColors.background,
+                            fontSize: 16,
+                            height: 1,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  iconSize: 30,
-                  color: Colors.white,
-                  splashColor: Colors.grey,
-                  onPressed: () {
-                    Get.back();
-                  },
-                ),
+                  Center(
+                    child: Container(
+                      height: height * 0.50,
+                      width: width,
+                      color: AppColors.lightGrey,
+                    ),
+                  )
+                ],
               ),
               Container(
-                height: height * 0.75,
-                margin: EdgeInsets.only(top: height * 0.40),
-                padding: EdgeInsets.all(16.0),
+                margin: EdgeInsets.only(
+                  top: 250,
+                  left: 24,
+                  right: 24,
+                ),
+                height: 500,
+                padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20))),
-                child: Obx(
-                  () => Form(
-                    key: _formKey,
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
+                ),
+                child: Form(
+                  key: _formKey,
+                  child: SingleChildScrollView(
                     child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 20),
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                                fontSize: 40, fontWeight: FontWeight.w600),
-                          ),
-                        ),
                         const SizedBox(height: 10),
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Input data untuk daftar",
-                            style: TextStyle(
-                              fontSize: 16,
+                        TextFormField(
+                          controller: _nameController,
+                          decoration: InputDecoration(
+                            hintText: "Nama Lengkap",
+                            isDense: true,
+                            counterText: "",
+                            prefixIcon: const Icon(Icons.person, color: AppColors.textSecondary,),
+                            filled: true,
+                            fillColor: Colors.white,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                  color: Color(0xFFEDF1F3), width: 2.0),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        TextFormField(
-                          validator: (value) {
-                            if (value == "") {
-                              return "wajib di isi";
-                            }
-                          },
-                          decoration: InputDecoration(
-                              hintText: "email",
-                              isDense: true,
-                              counterText: "",
-                              prefixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.person)),
-                              // contentPadding: const EdgeInsets.all(5.0),
-                              filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  borderSide: BorderSide.none)),
                           textAlign: TextAlign.start,
-                          maxLines: 1,
-                          maxLength: 20,
-                          // controller: _locationNameTextController,
+                          maxLength: 50,
+                          validator: (value) => value!.isEmpty
+                              ? 'Nama tidak boleh kosong'
+                              : null,
                         ),
                         const SizedBox(height: 10),
                         TextFormField(
-                          obscureText: controller.obsecureTextpassword.value,
-                          validator: (value) {
-                            RegExp regex = RegExp(
-                                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                            if (value.toString().isEmpty) {
-                              return 'wajib di isi';
-                            } else {
-                              if (!regex.hasMatch(value.toString())) {
-                                return 'Cth: Vignesh123! ';
-                              } else {
-                                return null;
-                              }
-                            }
-                          },
+                          controller: _emailController,
                           decoration: InputDecoration(
-                              hintText: "password",
-                              isDense: true,
-                              counterText: "",
-                              filled: true,
-                              fillColor: Colors.white,
-                              prefixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.lock)),
-                              suffixIcon: IconButton(
-                                icon: controller.obsecureTextpassword.value
-                                    ? Icon(Icons.visibility_off_outlined)
-                                    : Icon(Icons.visibility_outlined),
-                                onPressed: () {
-                                  controller.obsecureTextpassword.value =
-                                      !controller.obsecureTextpassword.value;
-                                },
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none)),
-                          textAlign: TextAlign.start,
-                          maxLines: 1,
-                          maxLength: 20,
-                          controller: _passwordController,
+                            hintText: "Email",
+                            isDense: true,
+                            counterText: "",
+                            prefixIcon: const Icon(Icons.email, color: AppColors.textSecondary,),
+                            filled: true,
+                            fillColor: Colors.white,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                  color: Color(0xFFEDF1F3), width: 2.0),
+                            ),
+                          ),
+                          validator: (value) => value!.isEmpty
+                              ? 'Email tidak boleh kosong'
+                              : null,
                         ),
                         const SizedBox(height: 10),
                         Obx(
                           () => TextFormField(
+                            controller: _passwordController,
                             obscureText:
-                                controller.obsecureTextRepeatPassword.value,
-                            validator: (value) {
-                              if (value != _passwordController.text) {
-                                return "password harus sma";
-                              }
-                            },
+                                controller.obsecureTestStatus.value,
                             decoration: InputDecoration(
-                                hintText: "confirm password",
-                                isDense: true,
-                                counterText: "",
-                                filled: true,
-                                fillColor: Colors.white,
-                                prefixIcon: IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(Icons.lock)),
-                                suffixIcon: IconButton(
-                                  icon: controller
-                                          .obsecureTextRepeatPassword.value
-                                      ? Icon(Icons.visibility_off_outlined)
-                                      : Icon(Icons.visibility_outlined),
-                                  onPressed: () {
-                                    controller
-                                            .obsecureTextRepeatPassword.value =
-                                        !controller
-                                            .obsecureTextRepeatPassword.value;
-                                  },
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    borderSide: BorderSide.none)),
-                            textAlign: TextAlign.start,
-                            maxLines: 1,
-                            maxLength: 20,
-                            // controller: _locationNameTextController,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          validator: (value) {
-                            if (value == "") {
-                              return "wajib di isi";
-                            }
-                          },
-                          decoration: InputDecoration(
-                              hintText: "85432xxxxxx",
+                              hintText: "Password",
                               isDense: true,
                               counterText: "",
                               filled: true,
                               fillColor: Colors.white,
-                              prefixIcon: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '+62',
-                                    style: TextStyle(
-                                      color: Colors.grey[800],
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
+                              prefixIcon: const Icon(Icons.lock, color: AppColors.textSecondary,),
+                              suffixIcon: IconButton(
+                                icon: controller.obsecureTestStatus.value
+                                    ? const Icon(
+                                        Icons.visibility_off_outlined)
+                                    : const Icon(Icons.visibility_outlined),
+                                onPressed: () {
+                                  controller.obsecureTestStatus.value =
+                                      !controller.obsecureTestStatus.value;
+                                },
                               ),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide.none)),
-                          textAlign: TextAlign.start,
-                          maxLines: 1,
-                          maxLength: 20,
-                          // controller: _locationNameTextController,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide: const BorderSide(
+                                    color: Color(0xFFEDF1F3), width: 2.0),
+                              ),
+                            ),
+                            validator: (value) => value!.isEmpty
+                                ? 'Password tidak boleh kosong'
+                                : null,
+                          ),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 10),
+                        TextFormField(
+                          controller: _phoneController,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            hintText: "No. HP",
+                            isDense: true,
+                            counterText: "",
+                            prefixIcon: const Icon(Icons.phone, color: AppColors.textSecondary,),
+                            filled: true,
+                            fillColor: Colors.white,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                  color: Color(0xFFEDF1F3), width: 2.0),
+                            ),
+                          ),
+                          validator: (value) => value!.isEmpty
+                              ? 'Nomor HP tidak boleh kosong'
+                              : null,
+                        ),
+                        const SizedBox(height: 10),
+                        DropdownButtonFormField<String>(
+                          value: _selectedRole,
+                          items: ['ADMIN', 'USER'].map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          decoration: InputDecoration(
+                            hintText: "Pilih Role",
+                            isDense: true,
+                            filled: true,
+                            fillColor: Colors.white,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                  color: Color(0xFFEDF1F3), width: 2.0),
+                            ),
+                          ),
+                          onChanged: (newValue) {
+                            _selectedRole = newValue!;
+                          },
+                          validator: (value) =>
+                              value == null ? 'Role harus dipilih' : null,
+                        ),
+                        const SizedBox(height: 20),
                         InkWell(
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
-                              Get.toNamed("/login");
+                              // registerPressed();
                             }
                           },
                           child: Container(
-                            width: 200.0,
-                            height: 50.0,
+                            height: 60,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
-                              color: Color(
-                                  0xFF0D47A1), // Warna latar belakang tombol
+                              color: AppColors.primary,
                             ),
                             child: const Center(
                               child: Text(
                                 'Register',
                                 style: TextStyle(
-                                  color: Colors.white, // Warna teks tombol
+                                  color: Colors.white,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -266,12 +260,21 @@ class RegisterPage extends StatelessWidget {
                             ),
                           ),
                         ),
+                        const SizedBox(height: 16),
+                        const Text("Sudah punya akun?"),
+                        TextButton(
+                          onPressed: () {
+                            controller
+                                .moveToLogin(); 
+                          },
+                          child: const Text('Login'),
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-            ]),
+            ],
           ),
         ),
       ),

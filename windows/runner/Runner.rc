@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "billjek" "\0"
+            VALUE "FileDescription", "tiketku" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "billjek" "\0"
+            VALUE "InternalName", "tiketku" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "billjek.exe" "\0"
-            VALUE "ProductName", "billjek" "\0"
+            VALUE "OriginalFilename", "tiketku.exe" "\0"
+            VALUE "ProductName", "tiketku" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

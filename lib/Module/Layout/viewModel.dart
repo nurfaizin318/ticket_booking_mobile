@@ -1,5 +1,5 @@
 
-import 'package:billjek/Module/Home/view.dart';
+import 'package:tiketku/Module/Home/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,8 +12,8 @@ class LayoutController extends GetxController {
   final List<Widget> children = [
     Home(),
     ChatPage(),
-    ProfilePage(),
-    ProfilePage(),
+    Profile(),
+    Profile(),
   ];
 
   void onTabTapped(int index) {

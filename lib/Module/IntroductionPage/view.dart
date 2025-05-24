@@ -65,13 +65,13 @@ class IntroductionPage extends StatelessWidget {
       pages: [
         PageViewModel(
           title: "Selamat Datang",
-          body: "BillJek siap mengantar anda sampai tujuan",
+          body: "tiketku siap mengantar anda sampai tujuan",
           image: buildImage('ride.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Promo Melimpah",
-          body: "NIkmati promo melimpah dari Billjek",
+          body: "NIkmati promo melimpah dari tiketku",
           image: buildImage('ride.jpg'),
           decoration: pageDecoration,
         ),

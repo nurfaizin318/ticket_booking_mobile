@@ -1,9 +1,10 @@
-import 'package:billjek/Binding/binding.dart';
-import 'package:billjek/Module/Login/view.dart';
-import 'package:billjek/Module/SplashScreen/view.dart';
+import 'package:tiketku/Binding/binding.dart';
+import 'package:tiketku/Module/Login/view.dart';
+import 'package:tiketku/Module/SplashScreen/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:alice/alice.dart';
+import 'package:tiketku/Theme/appTheme.dart';
 import 'Routes/routes.dart';
 
 void main() {
@@ -45,6 +46,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       initialBinding: SplashScreenBinding(),
       getPages: Routes.pages,
+      theme: AppTheme.themeData,
     );
   }
 }

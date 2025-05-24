@@ -1,11 +1,10 @@
-import 'package:billjek/Module/Login/viewModel.dart';
+import 'package:tiketku/Module/Login/viewModel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
 import 'package:get/get.dart';
-import 'dart:math' as math;
+import 'package:tiketku/Theme/appColors.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class Login extends StatelessWidget {
+  Login({super.key});
 
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -18,8 +17,9 @@ class LoginPage extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     final controller = Get.find<LoginController>();
+    final theme = Theme.of(context);
 
-    void _loginPressed() {
+    void loginPressed() {
       // Anda dapat menambahkan logika untuk validasi login dan aksi selanjutnya di sini
       String username = _usernameController.text;
       String password = _passwordController.text;
@@ -27,156 +27,199 @@ class LoginPage extends StatelessWidget {
       controller.moveToHomePage();
     }
 
-    return Container(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(new FocusNode());
-          },
-          child: SingleChildScrollView(
-            child: Stack(children: [
-              Image.asset(
-                "assets/images/bus2.png",
-                fit: BoxFit.cover,
-                height: height * 0.40,
-                width: width,
-              ),
-     
-              Container(
-                height: height * 0.60,
-                margin: EdgeInsets.only(top: height * 0.40),
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                    borderRadius: const BorderRadius.all(Radius.circular(15))),
-                child: Form(
-                  key: _formKey,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: SingleChildScrollView(
+          child: Stack(children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 80),
+                  height: height * 0.50,
+                  width: width,
+                  decoration: const BoxDecoration(
+                    color: AppColors.primary,
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/Star.png"),
+                        fit: BoxFit.cover),
+                  ),
                   child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 20),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Sign In",
-                          style: TextStyle(
-                              fontSize: 40, fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Masuk ke akun anda",
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
+                      Image.asset(
+                        "assets/images/logo_product_2.png",
+                        fit: BoxFit.cover,
+                        height: 10,
+                        width: 100,
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 20,
                       ),
-                      TextFormField(
-                        validator: (value) {
-                          if (value == "") {
-                            return "wrong email or password";
-                          }
-                        },
+                      Text("Sign in to your Account",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: AppColors.background,
+                              fontSize: 40,
+                              height: 1.2,
+                              fontWeight: FontWeight.bold)),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text("Enter your email and password to log in ",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: AppColors.background,
+                              fontSize: 16,
+                              height: 1)),
+                    ],
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    height: height * 0.50,
+                    width: width,
+                    color: AppColors.lightGrey,
+                  ),
+                )
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 270, left: 24, right: 24),
+              height: 400,
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius:
+                      const BorderRadius.all(Radius.circular(15))),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      validator: (value) {
+                        if (value == "") {
+                          return "wrong email or password";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          hintText: "Username",
+                          isDense: true,
+                          counterText: "",
+                          prefixIcon: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.person)),
+                          // contentPadding: const EdgeInsets.all(5.0),
+                          filled: true,
+                          fillColor: Colors.white,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                  color: const Color(0xFFEDF1F3),
+                                  width: 2.0))),
+                      textAlign: TextAlign.start,
+                      maxLines: 1,
+                      maxLength: 20,
+                      controller: _usernameController,
+                    ),
+                    const SizedBox(height: 10),
+                    Obx(
+                      () => TextFormField(
+                        obscureText: controller.obsecureTestStatus.value,
                         decoration: InputDecoration(
-                            hintText: "Username",
+                            hintText: "password",
                             isDense: true,
                             counterText: "",
-                            prefixIcon: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.person)),
-                            // contentPadding: const EdgeInsets.all(5.0),
                             filled: true,
                             fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                                borderSide: BorderSide.none)),
+                            prefixIcon: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.lock)),
+                            suffixIcon: IconButton(
+                              icon: controller.obsecureTestStatus.value
+                                  ? Icon(Icons.visibility_off_outlined)
+                                  : Icon(Icons.visibility_outlined),
+                              onPressed: () {
+                                controller.obsecureTestStatus.value =
+                                    !controller.obsecureTestStatus.value;
+                              },
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide: BorderSide(
+                                    color: const Color(0xFFEDF1F3),
+                                    width: 2.0))),
                         textAlign: TextAlign.start,
                         maxLines: 1,
                         maxLength: 20,
-                        controller: _usernameController,
+                        controller: _passwordController,
                       ),
-                      const SizedBox(height: 10),
-                      Obx(
-                        () => TextFormField(
-                          obscureText: controller.obsecureTestStatus.value,
-                          decoration: InputDecoration(
-                              hintText: "password",
-                              isDense: true,
-                              counterText: "",
-                              filled: true,
-                              fillColor: Colors.white,
-                              prefixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.lock)),
-                              suffixIcon: IconButton(
-                                icon: controller.obsecureTestStatus.value
-                                    ? Icon(Icons.visibility_off_outlined)
-                                    : Icon(Icons.visibility_outlined),
-                                onPressed: () {
-                                  controller.obsecureTestStatus.value =
-                                      !controller.obsecureTestStatus.value;
-                                },
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  borderSide: BorderSide.none)),
-                          textAlign: TextAlign.start,
-                          maxLines: 1,
-                          maxLength: 20,
-                          controller: _passwordController,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      InkWell(
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            _loginPressed();
-                          }
-                        },
-                        child: Container(
-                          width: 200.0,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            color: Color(
-                                0xFF0D47A1), // Warna latar belakang tombol
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            textStyle: const TextStyle(fontSize: 15),
                           ),
-                          child: const Center(
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                color: Colors.white, // Warna teks tombol
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          onPressed: () {
+                            controller.moveToRegister();
+                          },
+                          child: const Text('Lupa Password'),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    InkWell(
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          loginPressed();
+                        }
+                      },
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: AppColors
+                              .primary, // Warna latar belakang tombol
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                              color: Colors.white, // Warna teks tombol
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 16),
-                      const Text("Belum punya akun?"),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 15),
-                        ),
-                        onPressed: () {
-                          controller.moveToRegister();
-                        },
-                        child: const Text('Daftar'),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text("Belum punya akun?"),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        textStyle: const TextStyle(fontSize: 15),
                       ),
-                    ],
-                  ),
+                      onPressed: () {
+                        controller.moveToRegister();
+                      },
+                      child: const Text('Daftar'),
+                    ),
+                  ],
                 ),
               ),
-            ]),
-          ),
+            ),
+          ]),
         ),
       ),
     );

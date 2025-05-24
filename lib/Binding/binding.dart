@@ -1,13 +1,13 @@
-import 'package:billjek/Module/Chat/ViewModel.dart';
-import 'package:billjek/Module/Home/viewModel.dart';
-import 'package:billjek/Module/IntroductionPage/viewModel.dart';
-import 'package:billjek/Module/Layout/viewModel.dart';
-import 'package:billjek/Module/Login/viewModel.dart';
-import 'package:billjek/Module/OTP/viewModel.dart';
-import 'package:billjek/Module/Profile/ViewModel.dart';
-import 'package:billjek/Module/Register/viewModel.dart';
-import 'package:billjek/Module/Select%20city/viewModel.dart';
-import 'package:billjek/Module/SplashScreen/viewModel.dart';
+import 'package:tiketku/Module/Chat/ViewModel.dart';
+import 'package:tiketku/Module/Home/viewModel.dart';
+import 'package:tiketku/Module/IntroductionPage/viewModel.dart';
+import 'package:tiketku/Module/Layout/viewModel.dart';
+import 'package:tiketku/Module/Login/viewModel.dart';
+import 'package:tiketku/Module/OTP/viewModel.dart';
+import 'package:tiketku/Module/Profile/ViewModel.dart';
+import 'package:tiketku/Module/Register/viewModel.dart';
+import 'package:tiketku/Module/Select%20city/viewModel.dart';
+import 'package:tiketku/Module/SplashScreen/viewModel.dart';
 import 'package:get/get.dart';
 
 class LoginBinding implements Bindings {
@@ -37,6 +37,7 @@ class LayoutBinding implements Bindings {
   void dependencies() {
     Get.lazyPut(() => LayoutController(), fenix: true);
     Get.lazyPut(() => HomeController(), fenix: true);
+    Get.lazyPut(() => ProfileController(), fenix: true);
   }
 }
 

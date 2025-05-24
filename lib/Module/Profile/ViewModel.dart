@@ -1,11 +1,17 @@
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
-  void moveToRegister() {
-    Get.toNamed('/register');
+  void logout() {
+    Get.toNamed("/login");
   }
 
-  void moveToHomePage() {
-    Get.toNamed('/layout');
-  }
+  void editProfile() {}
+  void viewBlockedUsers() {}
+  void openWallet() {}
+  void openTaskCenter() {}
+  void viewActivities() {}
+  void openSettings() {}
+  void openLevel() {}
+  void openFavorites() {}
+  void openDownloads() {}
 }

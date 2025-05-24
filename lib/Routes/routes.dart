@@ -1,19 +1,19 @@
-import 'package:billjek/Binding/binding.dart';
-import 'package:billjek/Module/Chat/View.dart';
-import 'package:billjek/Module/IntroductionPage/view.dart';
-import 'package:billjek/Module/Layout/View.dart';
-import 'package:billjek/Module/Login/view.dart';
-import 'package:billjek/Module/Profile/View.dart';
-import 'package:billjek/Module/Register/view.dart';
-import 'package:billjek/Module/Select%20city/view.dart';
-import 'package:billjek/Module/SplashScreen/view.dart';
+import 'package:tiketku/Binding/binding.dart';
+import 'package:tiketku/Module/Chat/View.dart';
+import 'package:tiketku/Module/IntroductionPage/view.dart';
+import 'package:tiketku/Module/Layout/View.dart';
+import 'package:tiketku/Module/Login/view.dart';
+import 'package:tiketku/Module/Profile/View.dart';
+import 'package:tiketku/Module/Register/view.dart';
+import 'package:tiketku/Module/Select%20city/view.dart';
+import 'package:tiketku/Module/SplashScreen/view.dart';
 import 'package:get/get.dart';
 
 class Routes {
   static final pages = [
     GetPage(
         name: "/", page: () => SplashScreen(), binding: SplashScreenBinding()),
-    GetPage(name: "/login", page: () => LoginPage(), binding: LoginBinding()),
+    GetPage(name: "/login", page: () => Login(), binding: LoginBinding()),
     GetPage(
         name: "/register",
         page: () => RegisterPage(),
@@ -24,7 +24,7 @@ class Routes {
       binding: LayoutBinding(),
     ),
     GetPage(
-        name: "/profile", page: () => ProfilePage(), binding: ProfileBinding()),
+        name: "/profile", page: () => Profile(), binding: ProfileBinding()),
     GetPage(
         name: "/chat", page: () => const ChatPage(), binding: ChatBinding()),
     GetPage(

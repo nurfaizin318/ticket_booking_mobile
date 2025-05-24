@@ -1,6 +1,6 @@
 {
-    "name": "billjek",
-    "short_name": "billjek",
+    "name": "tiketku",
+    "short_name": "tiketku",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
